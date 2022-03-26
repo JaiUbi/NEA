@@ -19,8 +19,8 @@ public class CardLogic : MonoBehaviour
         TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE
     }
 
-public SUIT MySuit { get; set; }
-public VALUE MyValue { get; set; }
+        public SUIT MySuit { get; set; }
+        public VALUE MyValue { get; set; }
 
 
     // Start is called before the first frame update
