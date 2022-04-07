@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DeckLogic;
 using UnityEngine;
 
 
@@ -26,7 +27,9 @@ public class CardLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Deck d = new Deck();
+        //d.TakeCard();
+        Debug.Log(d.TakeCard());
     }
 
     // Update is called once per frame

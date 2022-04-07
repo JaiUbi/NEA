@@ -5,6 +5,7 @@ using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayfabManager : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class PlayfabManager : MonoBehaviour
     public TMP_InputField emailRegInput;
     public TMP_InputField passwordRegInput;
     public TMP_InputField usernameRegInput;
+    public TMP_InputField passwordEmailResetInput;
+    public Button backToLogin;
     
 
     // Start is called before the first frame update
@@ -74,7 +77,6 @@ public class PlayfabManager : MonoBehaviour
         {
             messageText.text = "Username must be between 3 and 20 characters!";
             return;
-
         }
 
         var regrequest = new RegisterPlayFabUserRequest()
@@ -83,13 +85,9 @@ public class PlayfabManager : MonoBehaviour
             Email = emailRegInput.text,
             Password = passwordRegInput.text,
             RequireBothUsernameAndEmail = true
-            
-            
+     
         };
-
-       
         
-
         PlayFabClientAPI.RegisterPlayFabUser(regrequest, OnRegisterSuccess, OnError);
         
     }
@@ -97,6 +95,7 @@ public class PlayfabManager : MonoBehaviour
     void OnRegisterSuccess(RegisterPlayFabUserResult result)
     {
         messageText.text = "Registered and logged in!";
+        loginSuccessRedirect();
 
 
     }
@@ -118,8 +117,8 @@ public class PlayfabManager : MonoBehaviour
     {
         messageText.text = "Logged in!";
         Debug.Log("Successful login");
-        
-      
+        loginSuccessRedirect();
+
         
     }
     
@@ -127,7 +126,7 @@ public class PlayfabManager : MonoBehaviour
     {
         var request = new SendAccountRecoveryEmailRequest()
         {
-            Email = emailInput.text,
+            Email = passwordEmailResetInput.text,
             TitleId = "70A04"
         };
         PlayFabClientAPI.SendAccountRecoveryEmail(request, OnPasswordReset, OnError);
@@ -136,8 +135,8 @@ public class PlayfabManager : MonoBehaviour
     void OnPasswordReset(SendAccountRecoveryEmailResult result)
     {
         messageText.text = "Password reset email sent!";
+       
     }
-    
     
 
     // Update is called once per frame
@@ -146,9 +145,18 @@ public class PlayfabManager : MonoBehaviour
         
     }
 
+    void loginSuccessRedirect()
+    {
+        
+        SceneManager.LoadScene("MenuScene");
+
+    }
+    
+
     void OnSuccess(LoginResult result)
     {
         Debug.Log("Successful login");
+        
     }
 
 

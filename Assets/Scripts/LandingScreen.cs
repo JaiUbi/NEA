@@ -46,7 +46,7 @@ public class LandingScreen : MonoBehaviour
 
     public void onClickEvent()
     {
-        SceneManager.LoadScene("MenuScene");
+        SceneManager.LoadScene("LoginPage");
         SceneNo = 1;
 
     }

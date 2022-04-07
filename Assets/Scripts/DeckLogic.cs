@@ -82,10 +82,9 @@ namespace DeckLogic
 
             return takeCards;
         }
+        
 
-
-
-
+ 
     }
 
     public class Run
